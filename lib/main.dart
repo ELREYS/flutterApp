@@ -37,6 +37,7 @@ class _RandomWordsState extends State<RandomWords> {
   Widget _buildRow(WordPair pair) {
     final alreadySaved = _saved.contains(pair);
     return ListTile(
+      hoverColor: Colors.yellow,
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
@@ -55,6 +56,25 @@ class _RandomWordsState extends State<RandomWords> {
         });
       },
     );
+  }
+
+  void _helloWorld() {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (BuildContext context) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text("Hello World"),
+          ),
+          body: Row(
+            children: [
+              Text("HI Guys"),
+              Image(
+                
+                image: AssetImage('assets/images/img.png'),
+              )
+            ],
+          ));
+    }));
   }
 
   void _pushSaved() {
@@ -90,14 +110,80 @@ class _RandomWordsState extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Startup Name Generator"),
-        actions: [
-          IconButton(onPressed: _pushSaved, icon: Icon(Icons.list)),
-        ],
-      ),
-      body: _buildSuggestions(),
-    );
+        appBar: AppBar(
+          title: Text("Startup Name Generator"),
+          actions: [
+            IconButton(onPressed: _pushSaved, icon: Icon(Icons.list)),
+          ],
+        ),
+        body: _buildSuggestions(),
+        bottomNavigationBar: BottomAppBar(
+            child: Container(
+          padding: EdgeInsets.all(1),
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Spacer(),
+              Column(
+                children: [
+                  IconButton(
+                      color: Colors.blue,
+                      alignment: Alignment.topCenter,
+                      onPressed: _helloWorld,
+                      icon: Icon(Icons.call)),
+                  Container(
+                    padding: EdgeInsets.all(1),
+                    transformAlignment: Alignment.bottomCenter,
+                    child: Text(
+                      "CALL",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
+              Spacer(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      color: Colors.blue,
+                      alignment: Alignment.topCenter,
+                      onPressed: _helloWorld,
+                      icon: Icon(Icons.near_me)),
+                  Container(
+                    padding: EdgeInsets.all(1),
+                    transformAlignment: Alignment.bottomCenter,
+                    child: Text(
+                      "ROUTE",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
+              Spacer(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      color: Colors.blue,
+                      alignment: Alignment.topCenter,
+                      onPressed: _helloWorld,
+                      icon: Icon(Icons.share_rounded)),
+                  Container(
+                    padding: EdgeInsets.all(1),
+                    transformAlignment: Alignment.bottomCenter,
+                    child: Text(
+                      "SHARE",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
+              Spacer(),
+            ],
+          ),
+        )));
   }
 }
 
